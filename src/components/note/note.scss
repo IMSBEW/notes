@@ -1,0 +1,85 @@
+.note {
+   &__content {
+      display: flex;
+      justify-content: space-between;
+      background-color: #74bef5;
+      border: 3px solid #bf4ee4;
+      border-radius: 5px;
+      margin: 15px;
+      padding: 10px;
+   }
+
+   &__body {
+      position: relative;
+      padding: 5px;
+      color: #ffffff;
+   }
+
+   &__title {
+      font-size: 20px;
+      font-weight: 800;
+      text-shadow: 1px 0 1px #000, 0 1px 1px #000, -1px 0 1px #000, 0 -1px 1px #000;
+   }
+
+   &__text {
+      padding-bottom: 20px;
+      font-size: 16px;
+      font-weight: 800;
+      text-shadow: 0.5px 0 0.5px #000, 0 0.5px 0.5px #000, -0.5px 0 0.5px #000, 0 -0.5px 0.5px #000;
+   }
+   &__date {
+      position: absolute;
+      bottom: 0;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      text-shadow: 0.5px 0 0.5px #000, 0 0.5px 0.5px #000, -0.5px 0 0.5px #000, 0 -0.5px 0.5px #000;
+   }
+   &__buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+   }
+
+   &__btn {
+      height: 50px;
+      width: 130px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 1px 0 1px #000, 0 1px 1px #000, -1px 0 1px #000, 0 -1px 1px #000;
+      transition: 0.3s;
+   }
+}
+
+.btn-delete {
+   background-color: #f5197e;
+   border: 2px solid #f4184b;
+   border-radius: 3px;
+   box-shadow: 0 3px 1px rgba(245, 25, 100, 1);
+   &:hover {
+      background-color: darken(#f5197e, 10%);
+   }
+   &:active {
+      position: relative;
+      top: 3px;
+      box-shadow: 0 1px 1px rgba(245, 25, 100, 1);
+   }
+}
+.btn-edit {
+   background-color: #26ef6e;
+   border: 2px solid #9419b0;
+   border-radius: 3px;
+   box-shadow: 0 3px 1px rgba(38, 213, 110, 1);
+   &:hover {
+      background-color: darken(#26ef6e, 10%);
+   }
+   &:active {
+      position: relative;
+      top: 3px;
+      box-shadow: 0 1px 1px rgba(38, 213, 110, 1);
+   }
+}
