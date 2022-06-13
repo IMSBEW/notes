@@ -1,7 +1,13 @@
+import { useState } from 'react'
 import Note from '../note/Note'
 import './noteContainer.scss'
 
-const NoteContainer = () => {
+const NoteContainer = ({ notesArr, transferDeleteNote }) => {
+
+   const getDeleteNote = (note) => {
+      transferDeleteNote(note)
+   }
+
    return (
       <div className="note-container">
          <div className="container">
@@ -12,7 +18,7 @@ const NoteContainer = () => {
                </div>
                <ul className="note-container__list-active">
                   <ul className="note-container__list">
-                     <Note />
+                     <Note notes={notesArr} onDeleteNotes={getDeleteNote} />
                   </ul>
                </ul>
             </div>
