@@ -1,0 +1,13 @@
+.modal {
+   position: fixed;
+   inset: 0;
+   z-index: 1000;
+   background-color: rgba(0, 0, 0, 0.51);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   &__content {
+      display: flex;
+      flex-direction: column;
+   }
+}

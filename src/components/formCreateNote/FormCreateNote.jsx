@@ -8,48 +8,74 @@ import './formCreateNote.scss'
 //    }
 // }
 
-const FormCreateNote = ({ onUpdateNotes, ddeleteNote }) => {
-   const [value, setValue] = useState('')
-   const [note, setNote] = useState([])
+const FormCreateNote = ({ onSave, isEditingExisting = false, selectedNote, onReject }) => {
+    const [value, setValue] = useState('')
+    const [tag, setTag] = useState([])
+    const changeHandler = (e) => {
+        setValue(e.target.value)
+    }
 
-   console.log(ddeleteNote)
+    useEffect(() => {
+        if (isEditingExisting) {
+            setValue(selectedNote.description)
+        }
+    }, [selectedNote])
 
-   useEffect(() => {
-      onUpdateNotes(note)
-   })
-
-   const getValue = (e) => {
-      e.preventDefault()
-
-      setValue(e.target.value)
-
-   }
+    const createTag = () => {
+        const tagText = value.match(/(#\w+)/g, '$1').join(', ')
+        // console.log(tagText)
+        if (tagText) {
+            setTag(tag => [...tag, tagText])
+        }
+    }
 
 
-   const clearHandler = () => {
-      setNote(note => ([...note, value]))
+    console.log(tag)
+    const createHandler = () => {
+        const description = value.trim()
 
-      onUpdateNotes(note)
+        // setTag(tag => [...tag, ...)])
+        if (!description) return
+        const now = new Date();
+        const current = now.getHours() + ':' + String(now.getMinutes()).padStart(2, "0")
 
-      setValue('')
-   }
+        console.log()
+        const note = {
+            id: isEditingExisting ? selectedNote.id : Date.now(),
+            description,
+            date: current,
+            tags: ''
+        }
 
-   return (
-      <div className="form">
-         <div className="container">
-            <div className="form__content">
-               <h3 className="form__title">Новая заметка</h3>
-               <div className="form__body">
-                  <div name="addNote" id='form'>
-                     <textarea value={value} onChange={getValue} cols="30" rows="5" name="description" className="form__note-description"
-                        placeholder="Описание"></textarea>
-                     <button onClick={clearHandler} className="form__button">Создать</button>
-                  </div>
-               </div>
+        createTag()
+        onSave(note)
+        setValue('')
+    }
+    console.log(tag)
+
+    return (
+        <div className="form">
+            <div className="container">
+                <div className="form__content">
+                    <h3 className="form__title">{
+                        isEditingExisting ? 'Редактировать заметку' : 'Создать заметку'
+                    }</h3>
+                    <div className="form__body">
+                        <div name="addNote">
+                            <textarea value={value} onChange={changeHandler} cols="30" rows="5" name="description"
+                                className="form__note-description"
+                                placeholder="Описание" />
+                            <button onClick={createHandler} className="form__button">{
+                                isEditingExisting ? 'Изменить' : 'Создать'
+                            }</button>
+                            {isEditingExisting ?
+                                <button className='form__button' onClick={onReject}>Cancel</button> : null}
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   )
+        </div>
+    )
 }
 
 export default FormCreateNote

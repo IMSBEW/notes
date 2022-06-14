@@ -1,4 +1,5 @@
 .form {
+   position: relative;
    margin-top: 50px;
    display: flex;
    justify-content: center;
@@ -84,7 +85,9 @@
       border: 2px solid #bf4ee4;
       border-radius: 3px;
    }
-
+   &__hashtag {
+      color: #bef574;
+   }
    &__button {
       position: relative;
       left: 50%;
